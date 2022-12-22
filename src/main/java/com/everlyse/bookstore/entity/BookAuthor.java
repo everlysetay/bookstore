@@ -17,6 +17,8 @@ public class BookAuthor {
   private Long bookId;
   private Long authorId;
 
+  public BookAuthor(){}
+
   public BookAuthor(Long bookId, Long authorId) {
     this.bookId = bookId;
     this.authorId = authorId;

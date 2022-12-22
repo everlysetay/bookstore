@@ -112,11 +112,11 @@ public class BookstoreController {
 
   @GetMapping("/find")
   public ResponseEntity<?> getBook(@RequestBody FindBookRequest findBookRequest) {
-    if (findBookRequest.getBookTitle() != null && (findBookRequest.getAuthorBirthday() != null && findBookRequest.getAuthorName() != null)) 
+    if (findBookRequest.getBookTitle() != "" && (findBookRequest.getAuthorBirthday() != "" && findBookRequest.getAuthorName() != "")) 
       return getBook(findBookRequest.getBookTitle(), findBookRequest.getAuthorName(), findBookRequest.getAuthorBirthday());
-    else if (findBookRequest.getBookTitle() != null) 
+    else if (findBookRequest.getBookTitle() != "") 
       return getBook(findBookRequest.getBookTitle());
-    else if (findBookRequest.getAuthorName() != null && findBookRequest.getAuthorBirthday() != null)
+    else if (findBookRequest.getAuthorName() != "" && findBookRequest.getAuthorBirthday() != "")
       return getBook(findBookRequest.getAuthorName(), findBookRequest.getAuthorBirthday());
     else 
       return ResponseEntity.ok().body("Please submit a request in the following format: " + new FindBookRequest());
@@ -171,10 +171,12 @@ public class BookstoreController {
 
     Author author = authorService.findByNameAndBirthday(authorName, authorBirthday);
 
-    for (Book book: bookList) {
-      BookAuthor bookAuthor = bookAuthorService.findByBookIdAndAuthorId(book.getId(), author.getId());
-      if (bookAuthor != null){
-        return ResponseEntity.ok().body(book);
+    if (bookList != null) {
+      for (Book book: bookList) {
+        BookAuthor bookAuthor = bookAuthorService.findByBookIdAndAuthorId(book.getId(), author.getId());
+        if (bookAuthor != null){
+          return ResponseEntity.ok().body(book);
+        }
       }
     }
 

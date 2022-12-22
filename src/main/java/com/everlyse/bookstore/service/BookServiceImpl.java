@@ -64,6 +64,7 @@ public class BookServiceImpl implements BookService {
       return repo.findByTitle(title);
     } catch (Exception e) {
       LOGGER.info("Book with title " + title + " doesn't exist");
+      LOGGER.error("",e);
       return null;
     }
   }

@@ -17,6 +17,8 @@ public class Author {
   private String name;
   private String birthday;
 
+  public Author(){}
+
   public Author(String name, String birthday) {
     this.name = name;
     this.birthday = birthday;

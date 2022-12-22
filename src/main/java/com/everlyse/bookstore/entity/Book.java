@@ -22,6 +22,8 @@ public class Book {
   private float price;
   private String genre;
 
+  public Book(){}
+
   public Book(String isbn, String title,  Integer publishedYear, float price, String genre) {
     this.isbn = isbn;
     this.title = title;
